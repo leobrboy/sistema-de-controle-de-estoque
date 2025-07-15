@@ -1,7 +1,6 @@
-
 # 📦 Sistema de Controle de Estoque em Python (Tkinter + SQLite)
 
-Este é um projeto de estudo de caso para a disciplina de Desenvolvimento com Python. A aplicação permite o gerenciamento de estoque de produtos com entrada/saída, autenticação de usuários e níveis de acesso (administrador e comum), tudo com interface gráfica utilizando Tkinter e banco de dados local SQLite.
+Este é um projeto de estudo de caso para a disciplina de Desenvolvimento com Python. A aplicação permite o gerenciamento de estoque de produtos com entrada/saída, autenticação de usuários e níveis de acesso (administrador, moderador e comum), tudo com interface gráfica utilizando Tkinter e banco de dados local SQLite.
 
 ---
 
@@ -17,11 +16,13 @@ Este é um projeto de estudo de caso para a disciplina de Desenvolvimento com Py
 ## 🚀 Funcionalidades
 
 - Login com autenticação de usuário
-- Perfis: **Administrador** e **Comum**
+- Perfis: **Administrador**, **Moderador** e **Comum**
 - Cadastro de novos usuários (restrito ao administrador)
 - Cadastro de produtos com quantidade mínima
 - Atualização de estoque (entrada e saída)
 - Alerta visual para produtos abaixo do mínimo
+- Remoção de produtos (restrito ao administrador)
+- Paginação na listagem de produtos
 - Interface intuitiva e validada
 - Banco de dados local: **não precisa instalar nada**
 
@@ -33,13 +34,14 @@ Este é um projeto de estudo de caso para a disciplina de Desenvolvimento com Py
 controle_estoque/
 ├── main.py                   # Ponto de entrada da aplicação
 ├── login.py                  # Tela de login
-├── dashboard.py              # Tela principal após login
+├── dashboard.py              # Tela principal após login, com paginação e controle de produtos e usuários
 ├── cadastro_produto.py       # Cadastro de produtos
 ├── cadastro_usuario.py       # Cadastro de usuários (admin)
 ├── editar_estoque.py         # Entrada e saída de estoque
 ├── utils.py                  # Criptografia de senha
 ├── db.py                     # Conexão e criação do SQLite
-├── estoque.db                # Banco de dados (gerado automaticamente)
+├── product_utils.py          # Utilitários para manipulação de produtos (ex: reordenação de IDs)
+├── estoque_db.sqlite3        # Banco de dados (gerado automaticamente)
 └── README.md                 # Documentação
 ```
 
@@ -62,7 +64,7 @@ pip install bcrypt
 python main.py
 ```
 
-4. O sistema criará automaticamente o banco de dados local `estoque.db` com as tabelas e um usuário inicial.
+4. O sistema criará automaticamente o banco de dados local `estoque_db.sqlite3` com as tabelas e um usuário inicial.
 
 ---
 
@@ -77,6 +79,7 @@ Esse usuário já tem permissão para:
 - Cadastrar produtos
 - Cadastrar novos usuários
 - Editar estoque
+- Remover produtos
 
 ---
 
